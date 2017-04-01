@@ -5,7 +5,7 @@ import java.util.Collections;
 
 public class DependenceTree {
 		private ArrayList<Node> nodes,depTree;
-		private Node head;
+		
 		private ArrayList<Edge> edges;
 		
 		
@@ -45,9 +45,9 @@ public class DependenceTree {
 		}
 		
 	}
-	public double calcualteWeight(Feature f1,Feature f2){
-		int[] oneBinary=f1.getBinaries();
-		int[] twoBinary=f2.getBinaries();
+	public double calcualteWeight(Class c,Feature f1,Feature f2){
+		int[] oneBinary=f1.getData(c).getBinaries();
+		int[] twoBinary=f2.getData(c).getBinaries();
 			
 			double weight=0;
 			int k=0;
@@ -62,7 +62,7 @@ public class DependenceTree {
 			}
 		}
 			
-		 weight+=(count/2000)*Math.log((count/2000)/(f1.getProbDep(k%2)*f2.getProbDep(j%2)));
+		 weight+=(count/2000)*Math.log((count/2000)/(f1.getData(c).getProbDep(k%2)*f2.getData(c).getProbDep(j%2)));
 		 
 	}
 		return weight;
@@ -74,7 +74,7 @@ public class DependenceTree {
 		for(int i=0;i<9;i++){
 			maximumEdges.add(edges.get(i));
 		}
-		int i=0;
+		
 			for(Node n:nodes){
 				n.getDependents().clear();
 				n.setDependinOn(null);

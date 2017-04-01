@@ -46,11 +46,11 @@ public class Node {
 	public void setDependinOn(Node n){
 		dependingOn=n;
 	}
-	public double getProbability(int index){
+	public double getProbability(int index,Class c){
 		if(dependingOn==null){
 			return probas[0];
 		}else{
-			if(dependingOn.getFeature().getDepBinaries()[index]==0){
+			if(dependingOn.getFeature().getData(c).getDepBinaries()[index]==0){
 				return probas[0];
 			}
 		
